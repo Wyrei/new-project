@@ -8,6 +8,7 @@ TagManager:
   - obs
   - Terrian
   - Chest
+  - Knight
   layers:
   - Default
   - TransparentFX

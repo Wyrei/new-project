@@ -24,8 +24,8 @@ public class dialogos : MonoBehaviour
     private bool isTyping;
     private bool textStarted;
 
-    public GameObject next;
-    public GameObject turnOff;
+    public GameObject[] next;
+    public GameObject[] turnOff;
 
     //public NameInput nameInput;
     public string playerName;
@@ -104,8 +104,27 @@ public class dialogos : MonoBehaviour
         {
             if (textList[currentIndex].EnumKindText == TextKind.gameobjectOn)
             {
-                next.SetActive(true);
-                turnOff.SetActive(false);
+                foreach (var ObjToTurnOn in next)
+                {
+                    ObjToTurnOn.SetActive(true);
+                }
+
+                foreach (var objToTurnOff in turnOff)
+                {
+                    objToTurnOff.SetActive(false);
+                }
+            }
+            else if(textList[currentIndex].EnumKindText == TextKind.startCinametic)
+            {
+                foreach (var ObjToTurnOn in next)
+                {
+                    ObjToTurnOn.SetActive(true);
+                }
+
+                foreach (var objToTurnOff in turnOff)
+                {
+                    objToTurnOff.SetActive(false);
+                }
             }
             else if (textList[currentIndex].EnumKindText == TextKind.NoMove)
             {
@@ -135,5 +154,6 @@ public class dialogos : MonoBehaviour
 [Serializable] public enum TextKind
 {
     gameobjectOn,
-    NoMove
+    NoMove,
+    startCinametic
 }

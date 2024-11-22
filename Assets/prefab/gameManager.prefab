@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Width: 28
-  _Deept: 10
+  _Deept: 15
   _TilePrefab: {fileID: 7938143034218111702, guid: 4ed57d1a2d4494140a5a0b869f12a5a2, type: 3}
   _PlayerPrefab: {fileID: 134496901469616513, guid: d92041757d63417468a6ade0cc85d67a, type: 3}
   tileZeroZero: {x: 0, y: 5.5, z: 2}
@@ -79,7 +79,7 @@ MonoBehaviour:
   enemyspawn: 0
   hight: 5
   MapIsMade: 1
-  randomspawn: 35
+  randomspawn: 45
   tiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5799525059199866345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be53ed817c83c44a02067fddeb78df, type: 3}
   m_Name: 
