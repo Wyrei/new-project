@@ -38,6 +38,12 @@ public class GridManager : MonoBehaviour
     public int randomspawn;
 
     public List<Tile> tiles;
+
+    public Vector3 playerpos;
+
+    public GameObject player;
+
+    public Vector3 sps;
     
     private void Start()
     {
@@ -68,18 +74,27 @@ public class GridManager : MonoBehaviour
             tile.HighLight(false);
         }
     }
-    void GenerateGrid()
+    public void GenerateGrid()
     {
+        playerpos = player.transform.position;
         tiles = new List<Tile>();
+
+        float startX = playerpos.x - (_Width / 2);
+        float startZ = playerpos.z - (_Width / 2);
+        
+        
         for (int x = 0; x < _Width; x++)
         {
             for (int z = 0; z < _Deept; z++)
             {
-                Vector3 sps  = new Vector3(x, hight, z);
                 
-                if (!isPositionOccupied(sps))
+                sps  = new Vector3(x, playerpos.y, z);
+
+                Vector3 tilepos = new Vector3(startX + x, playerpos.y, startZ + z);
+                
+                if (!isPositionOccupied(playerpos))
                 {
-                    var spawnedTile = Instantiate(_TilePrefab, sps, Quaternion.Euler(90, 0, 0));
+                    var spawnedTile = Instantiate(_TilePrefab, tilepos, Quaternion.Euler(90, 0, 0));
                     tiles.Add(spawnedTile);
                     
                     
@@ -87,20 +102,6 @@ public class GridManager : MonoBehaviour
                     float zR = Random.Range(0, 10);
 
                     Vector3 sp = new Vector3(xR, hight + 0.5f, zR);
-                    
-                    randomspawn = Random.Range(0, 100);
-                    if (randomspawn == 1 && spawnedEnemies.Count <= 1)
-                    {
-                        var spawnEnemy = Instantiate(Enemie, sp, quaternion.identity); 
-                        //spawnEnemy.transform.SetParent(ParentTiles.transform);
-                        spawnedEnemies.Add(spawnEnemy);
-                    }
-                    else if (spawnedEnemies.Count == 1)
-                    {
-                        var spawnEnemy = Instantiate(Enemie, sp, quaternion.identity); 
-                        //spawnEnemy.transform.SetParent(ParentTiles.transform);
-                        spawnedEnemies.Add(spawnEnemy);
-                    }
                     
                     spawnedTile.name = $"Tile {x} {z}";
                     spawnedTile.transform.SetParent(ParentTiles.transform);

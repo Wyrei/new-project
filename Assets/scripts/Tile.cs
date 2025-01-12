@@ -12,7 +12,29 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highLight;
 
     [SerializeField] private GameObject InRange;
-    
+
+    public float gravity;
+    public float groundcheckDistance = 0.1f;
+
+    public Vector3 velocity;
+    public bool isGrounded;
+
+    public LayerMask groundLayerMask;
+
+    public CharacterController ch;
+    private void Update()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundcheckDistance, groundLayerMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0f;
+        }
+        
+        velocity.y -= gravity;
+        ch.Move(velocity);
+    }
+
     public void Init(bool isOffset)
     {
         _renderer.color = isOffset ? _offSetColor : _baseColor;
