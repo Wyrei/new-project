@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] public List<container> mycon = new List<container>();
 
     
-    
+
     void Update()
     {
         foreach (container con in mycon)
